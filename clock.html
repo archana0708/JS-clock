@@ -8,34 +8,69 @@
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
-
-    <title>Hello, world!</title>
+    <style>
+        h1 {
+            text-align: center;
+            color: maroon;
+        }
+        
+        .container-fluid {
+            background-color: rgb(84, 131, 8);
+            color: rgb(215, 231, 131);
+        }
+        
+        .clock-container {
+            margin: auto;
+            width: 80%;
+            border: 3px solid green;
+            padding: 10px;
+            height: 25rem;
+        }
+        
+        #mainclock {
+            background-color: rgb(185, 224, 92);
+            color: purple;
+            height: 18rem;
+            margin: 10px;
+            padding: 30px;
+            padding-top: 60px;
+            text-align: center;
+            font-size: larger;
+        }
+        
+        .nav {
+            color: rgb(213, 240, 140);
+        }
+    </style>
+    <title>Clock JS</title>
 </head>
 
-<body>
-
-
-    <h1>CLOCK</h1>
-
+<body onload="stime()">
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Navbar</a>
+            <a class="navbar-brand" href="clock.html">
+                <div class="nav">CLOCK</div>
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link active" aria-current="page" href="#">
+                            <div class="nav">Home</div>
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
+                        <a class="nav-link" href="#">
+                            <div class="nav">Link</div>
+                        </a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Dropdown
-                </a>
+                            <div class="nav">Dropdown</div>
+                        </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="#">Action</a></li>
                             <li><a class="dropdown-item" href="#">Another action</a></li>
@@ -56,6 +91,49 @@
             </div>
         </div>
     </nav>
+
+    <div class="clock-container">
+        <div class="jumbotron">
+            <h1 class="display-4">MY CLOCK</h1>
+            <div id="mainclock">
+                <p id="timeid"></p>
+                <p id="dateid"></p>
+                <p id="dayid"></p>
+            </div>
+            <!-- <hr class="my-4"> -->
+            <!-- <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+        <p class="lead">
+            <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+        </p> -->
+        </div>
+
+    </div>
+
+
+
+
+
+    <script>
+        function stime() {
+            let a = new Date();
+            // console.log(a);
+            let time = (a.getHours() + ':' + a.getMinutes() + ':' + a.getSeconds());
+            let time_element = document.getElementById("timeid");
+            time_element.innerHTML = "TIME: " + time;
+
+            let dat = a.getDate() + '/' + a.getMonth() + '/' + a.getFullYear();
+            let date_element = document.getElementById("dateid");
+            date_element.innerHTML = "Date: " + dat;
+
+
+            let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+            let day = a.getDay();
+            // console.log(day);
+            day_element = document.getElementById("dayid");
+            day_element.innerHTML = "Day: " + days[day];
+        }
+        setInterval(stime, 1000); //repeat after 1000ms i.e 1 sec (for live clock)
+    </script>
 
     <!-- Optional JavaScript; choose one of the two! -->
 
